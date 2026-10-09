@@ -64,5 +64,6 @@ GitHub Pagesへの公開は行っていません。privateリポジトリから�
 - [設計資料チェック報告](docs/check-report.md)（実装前の確認記録）
 - [初期版の検証記録](docs/verification.md)
 - [Supabaseセットアップ](docs/setup.md)
+- [スマホのホーム画面に追加](docs/mobile.md)
 
 法令参照：[国土交通省の解釈通達（2026年6月26日最終改正）](https://www.mlit.go.jp/jidosha/anzen/03safety/resourse/data/construction_kamotsu.pdf)。指示書の電子作成・保存が許されることと、本件のスマホ携行運用全体の適否は別に確認します。

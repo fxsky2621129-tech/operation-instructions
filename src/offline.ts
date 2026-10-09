@@ -1,3 +1,4 @@
+import { newId } from './id';
 import type { Command, Trip } from './domain';
 export type Pending = { command: Command; status: 'pending' | 'conflict' | 'cancelled'; message?: string; queuedAt: string };
 type Entry = { key: string; value: unknown };
@@ -38,4 +39,4 @@ export async function clearUser(scope: string) {
   });
 }
 export async function saveCarry(scope: string, trip: Trip) { const savedAt = new Date().toISOString(); await write(`${scope}:carry:${trip.id}`, { trip, savedAt }); return savedAt; }
-export function deviceId() { let id = localStorage.getItem('operation-device'); if (!id) { id = crypto.randomUUID(); localStorage.setItem('operation-device', id); } return id; }
+export function deviceId() { let id = localStorage.getItem('operation-device'); if (!id) { id = newId(); localStorage.setItem('operation-device', id); } return id; }

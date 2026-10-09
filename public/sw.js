@@ -6,8 +6,8 @@ self.addEventListener('install', event => {
     const response = await fetch(new URL('index.html', BASE), { cache: 'reload' });
     if (!response.ok) throw new Error('Shell unavailable');
     const html = await response.clone().text();
-    const assetPaths = [...html.matchAll(/(?:src|href)="([^"#]+\.(?:js|css|svg))"/g)].map(m => new URL(m[1], BASE));
-    await cache.addAll([new URL('manifest.webmanifest', BASE).href, ...assetPaths.map(u => u.href)]);
+    const assetPaths = [...html.matchAll(/(?:src|href)="([^"#]+\.(?:js|css|svg|png))"/g)].map(m => new URL(m[1], BASE));
+    await cache.addAll([new URL('manifest.webmanifest', BASE).href, new URL('icon-192.png', BASE).href, new URL('icon-512.png', BASE).href, ...assetPaths.map(u => u.href)]);
     await cache.put(new URL('index.html', BASE), response);
     // Wait for existing tabs to close; never activate a new bundle mid-operation.
   })());
@@ -24,7 +24,7 @@ self.addEventListener('fetch', event => {
     // Serve one complete release until the next worker activates. A newer network
     // index may reference assets absent from this worker's offline cache.
     event.respondWith(caches.open(CACHE).then(async cache => (await cache.match(new URL('index.html', BASE))) || fetch(event.request)));
-  } else if (/\.(?:js|css|svg|webmanifest)$/.test(url.pathname)) {
+  } else if (/\.(?:js|css|svg|png|webmanifest)$/.test(url.pathname)) {
     // Vite/static hosts may send Vary: Origin. Module requests include an Origin
     // header unlike precache requests; these public same-origin files are identical.
     event.respondWith(caches.open(CACHE).then(async cache => (await cache.match(event.request, { ignoreVary: true })) || fetch(event.request)));
