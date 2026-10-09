@@ -40,4 +40,3 @@
 - [GitHub Docs：What is GitHub Pages?](https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages)
 - [Supabase：Row Level Security](https://supabase.com/docs/guides/database/postgres/row-level-security)
 - [Supabase：API keys](https://supabase.com/docs/guides/getting-started/api-keys)
-
